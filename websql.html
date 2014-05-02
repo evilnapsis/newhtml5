@@ -1,0 +1,59 @@
+<html>
+<head>
+	<meta charset="utf8">
+	<title>HTML5 y Las nuevas Tendencias Web.</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap3/css/bootstrap.min.css"/>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<h1>HTML5 y Las Nuevas Tendencias Web</h1>
+			</div>
+		</div>
+	</div>
+	<script>
+
+// CREAR BBDD
+function prepareDatabase(ready, error) {
+  return openDatabase('documents', '', 'Offline document storage', 5*1024*1024, function (db) {
+      db.changeVersion('', '1.0', function (t) {
+        t.executeSql('CREATE TABLE docids (id, name)');
+    }, error);
+  });
+ 
+}
+ 
+// CONSULTAR BBDD
+function showDocCount(db, span) {
+  db.readTransaction(function (t) {
+    t.executeSql('SELECT COUNT(*) AS c FROM docids', [], function (t, r) {
+      span.textContent = r.rows[0].c;
+    }, function (t, e) {
+      // couldn't read database
+      span.textContent = '(unknown: ' + e.message + ')';
+    });
+  });
+}
+ 
+ 
+prepareDatabase(function(db) {
+  // got database
+  var span = document.getElementById('doc-count');
+  showDocCount(db, span);
+}, function (e) {
+  // error getting database
+  alert(e.message);
+});
+ 
+// Ejemplo de SELECT con parámetros
+ 
+db.readTransaction(function (t) {
+  t.executeSql('SELECT title, author FROM docs WHERE id=?', [id], function (t, data) {
+    report(data.rows[0].title, data.rows[0].author);
+  });
+});
+	
+	</script>
+</body>
+</html>

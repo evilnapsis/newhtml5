@@ -1,0 +1,117 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <title>HTML5 y Las nuevas Tendencias Web.</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap3/css/bootstrap.min.css"/>
+  <style>
+ol li {
+  color:black;
+  background:#3498db;
+  padding:10px;
+  font-weight: bold;
+  margin-top:3px;
+}
+  </style>
+}
+</head>
+
+<body>
+<br>  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2><a href="index.html" style="color:black;text-decoration:none;">HTML5 y Las Nuevas Tendencias Web</a></h2>
+      </div>
+    </div>
+
+
+<div class="row">
+  <div class="col-md-9">
+      <h2>Drag and Drop <small>Ejemplo</small></h2>
+<!--- -->
+   <h2 style="color:blue;">Cual es tu fruta favorita ?</h2>
+    <ol ondragstart="dragStartHandler(event)" ondragend="dragEndHandler(event)">    
+     <li draggable="true" data-value="fruit-apple">Manzana</li>
+     <li draggable="true" data-value="fruit-orange">Naranja</li>
+     <li draggable="true" data-value="fruit-pear">Pera</li>
+     <li draggable="true" data-value="fruit-melon">Melon</li>
+     <li draggable="true" data-value="fruit-sandia">Sandia</li>
+    </ol>
+    <script>
+      var internalDNDType = 'text/plain'; // set this to something specific to your site
+      function dragStartHandler(event) {
+        if (event.target instanceof HTMLLIElement) {
+          // use the element's data-value="" attribute as the value to be moving:
+          event.dataTransfer.setData(internalDNDType, event.target.dataset.value);
+          event.dataTransfer.effectAllowed = 'move'; // only allow moves
+        } else {
+          event.preventDefault(); // don't allow selection to be dragged
+        }
+      }
+      function dragEndHandler(event) {
+        // remove the dragged element
+        event.target.parentNode.removeChild(event.target);
+
+      }
+    </script>
+
+   <h2 style="color:blue;">Arrastra y suelta tu fruta favorita en la parte de abajo !!</h2>
+    <div dropzone="move s:text/plain" ondrop="dropHandler(event)">
+ <ol dropzone="move s:text/plain" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+         <!-- don't forget to change the "text/x-example" type to something
+         specific to your site -->
+            <li>Bananas</li>
+        </ol>
+        </br>
+        </br>
+        </br>
+    </div>
+    <script>
+      var internalDNDType = 'text/plain'; // set this to something specific to your site
+
+function dragOverHandler(event) {
+    event.preventDefault();
+    return false;
+}
+
+
+      function dropHandler(event) {
+    var li = document.createElement('li');
+    var data = event.dataTransfer.getData(internalDNDType);
+    if (data == 'fruit-apple') {
+      li.textContent = 'Apples';
+    } else if (data == 'fruit-orange') {
+      li.textContent = 'Oranges';
+    } else if (data == 'fruit-pear') {
+      li.textContent = 'Pears';
+    }else if (data == 'fruit-melon') {
+      li.textContent = 'Melon';
+    }
+    else if (data == 'fruit-sandia') {
+      li.textContent = 'Sandia';
+    } else {
+      li.textContent = 'Fruta desconocida';
+    }
+    event.target.appendChild(li);
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+}
+    </script>
+
+  <!---         -->
+
+        <br><br><h3>Elaborado por</h3>
+        <h1>Agustin Ramos Escalante</h1> <p>Para ponencia en el <b><a href="http://www.itsc.edu.mx/">Instituto Tecnologico Superior de Comalcalco</a></b></p>
+        <p><a href="http://neowelder.com/"><h3>Hosted by NeoWelder Labs</h3></a></p>
+        <br><br>
+      </div>
+      <div class="col-md-3">
+        <img class="img-responsive" src="images/html5.png">
+      </div>
+  
+    </div>
+
+
+    </div>
+</body>
+</html>

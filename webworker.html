@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <title>HTML5 y Las nuevas Tendencias Web.</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap3/css/bootstrap.min.css"/>
+</head>
+<body>
+<br>  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2><a href="index.html" style="color:black;text-decoration:none;">HTML5 y Las Nuevas Tendencias Web</a></h2>
+      </div>
+    </div>
+
+
+<div class="row">
+  <div class="col-md-9">
+      <h2>Formularios <small>Ejemplo</small></h2>
+<!--- -->
+<p style='font-size:50px;'>Buscando el mayor numero primo: <output id="result"></output></p>
+  <script>
+   var worker = new Worker('worker.js');
+   worker.onmessage = function (event) {
+     document.getElementById('result').textContent = event.data;
+   };
+  </script>
+
+  <!---         -->
+
+        <br><br><h3>Elaborado por</h3>
+        <h1>Agustin Ramos Escalante</h1> <p>Para ponencia en el <b><a href="http://www.itsc.edu.mx/">Instituto Tecnologico Superior de Comalcalco</a></b></p>
+        <p><a href="http://neowelder.com/"><h3>Hosted by NeoWelder Labs</h3></a></p>
+        <br><br>
+      </div>
+      <div class="col-md-3">
+        <img class="img-responsive" src="images/html5.png">
+      </div>
+  
+    </div>
+
+
+    </div>
+</body>
+</html>
